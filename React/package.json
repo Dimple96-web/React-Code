@@ -1,0 +1,28 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React code practice",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dimple96-web/React-Code.git"
+  },
+  "author": "Dimple A A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dimple96-web/React-Code/issues"
+  },
+  "homepage": "https://github.com/Dimple96-web/React-Code#readme",
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
