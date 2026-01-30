@@ -33,3 +33,25 @@ root.render(parent);
 
 // JSX Code
 const jsxHeading = <h1 id="heading">Hello World from JSX</h1>;
+
+//Passing props to the component
+{
+  /* <ResturantCard
+          name="Pizza Hut"
+          cuisine="Pizza"
+          rating="4.2"
+          time="25 min"
+        />
+        <ResturantCard
+          name="KFC"
+          cuisine="Chicken"
+          rating="4.0"
+          time="35 min"
+        />
+        <ResturantCard
+          name="Domino's Pizza"
+          cuisine="Pizza"
+          rating="4.7"
+          time="20 min"
+        /> */
+}
