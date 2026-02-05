@@ -6,7 +6,6 @@ import { MENU_URL } from "../utils/constants";
 
 const ResturantDetails = () => {
   let { resId } = useParams();
-  console.log(resId);
   const [resturantData, setResturantData] = useState(null);
 
   useEffect(() => {
@@ -14,7 +13,6 @@ const ResturantDetails = () => {
   }, []);
 
   const fetchResturantDetails = async () => {
-    resId = 303283;
     const data = await fetch(MENU_URL + resId);
     setResturantData(resturantDetails);
   };
