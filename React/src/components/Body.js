@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ResturantCard from "./ResturantCard";
 import Shimmer from "./Shimmer";
 import { RES_LIST_URL } from "../utils/constants";
+import useNetworkStatus from "../utils/useNetworkStatus";
 
 const Body = () => {
   const [resturantList, setResturantList] = useState([]);
@@ -43,6 +44,11 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const isOnline = useNetworkStatus();
+  if (isOnline === false) {
+    return <h1>🔴 You are offline! Please check your internet connection.</h1>;
+  }
 
   //Conditional rendering
   return resturantList.length === 0 ? (

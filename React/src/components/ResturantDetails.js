@@ -1,21 +1,14 @@
-import { useState, useEffect, use } from "react";
 import { resturantDetails } from "../utils/mockData";
 import { useParams } from "react-router-dom";
+import useResturantDetails from "../utils/useResturantDetails";
 import Shimmer from "./Shimmer";
-import { MENU_URL } from "../utils/constants";
 
 const ResturantDetails = () => {
   let { resId } = useParams();
-  const [resturantData, setResturantData] = useState(null);
 
-  useEffect(() => {
-    fetchResturantDetails();
-  }, []);
-
-  const fetchResturantDetails = async () => {
-    const data = await fetch(MENU_URL + resId);
-    setResturantData(resturantDetails);
-  };
+  //Fetch data from the custom hooks
+  let resturantData = useResturantDetails(resId);
+  resturantData = resturantDetails;
   if (resturantData === null) {
     return <Shimmer />;
   }
