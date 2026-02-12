@@ -7,13 +7,25 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import ResturantDetails from "./components/ResturantDetails";
+import UserContext from "./utils/UserContext";
+import { useEffect, useState } from "react";
 const Grocery = lazy(() => import("./components/Grocery"));
 const AppLayout = () => {
+  const [userInfo, setUserInfo] = useState("");
+
+  useEffect(() => {
+    const data = {
+      username: "Dimple Dechamma",
+    };
+    setUserInfo(data.username);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userInfo, setUserInfo }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
