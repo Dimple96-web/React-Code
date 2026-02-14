@@ -1,4 +1,11 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div>
       {items.map((item) => (
@@ -11,6 +18,14 @@ const ItemList = ({ items }) => {
             <span> - ₹{item?.card?.info.price / 100}</span>
           </div>
           <p className="text-xs">{item?.card?.info?.description}</p>
+          <div className="flex justify-end">
+            <button
+              className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
+              onClick={() => handleAddItem(item)}
+            >
+              Add +
+            </button>
+          </div>
         </div>
       ))}
     </div>
