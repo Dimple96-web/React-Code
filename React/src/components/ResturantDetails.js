@@ -1,6 +1,5 @@
 import { resturantDetails } from "../utils/mockData";
 import { useParams } from "react-router-dom";
-import useResturantDetails from "../utils/useResturantDetails";
 import Shimmer from "./Shimmer";
 import ResturantCategory from "./ResturantCategory";
 import { useState } from "react";
@@ -10,8 +9,8 @@ const ResturantDetails = () => {
   const [showIndex, setShowIndex] = useState(null);
 
   //Fetch data from the custom hooks
-  let resturantData = useResturantDetails(resId);
-  resturantData = resturantDetails;
+  //let resturantData = useResturantDetails(resId);
+  let resturantData = resturantDetails;
   if (resturantData === null) {
     return <Shimmer />;
   }
@@ -23,8 +22,6 @@ const ResturantDetails = () => {
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
     );
-
-  console.log("category ", category);
 
   return (
     <div className="text-center">

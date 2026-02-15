@@ -10,6 +10,7 @@ const ItemList = ({ items }) => {
     <div>
       {items.map((item) => (
         <div
+          data-testid="items"
           key={item?.card?.info?.id}
           className="p-2 m-2 border-gray-300 border-b-2 text-sm text-left"
         >
@@ -23,7 +24,7 @@ const ItemList = ({ items }) => {
               className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
               onClick={() => handleAddItem(item)}
             >
-              Add +
+              Add
             </button>
           </div>
         </div>

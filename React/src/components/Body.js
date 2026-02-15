@@ -18,7 +18,7 @@ const Body = () => {
     const filteredList = resturantList.filter(
       (resturants) => resturants.info.avgRating > 4.5,
     );
-    setResturantList(filteredList);
+    setFilteredList(filteredList);
   };
 
   const fetchData = async () => {
@@ -63,6 +63,7 @@ const Body = () => {
         <div className="search m-2 p-2">
           <input
             className="border border-solid border-black"
+            data-testid="searchInput"
             type="text"
             value={searchValue}
             onChange={setSearchHandler}

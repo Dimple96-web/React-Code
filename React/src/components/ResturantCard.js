@@ -5,6 +5,7 @@ const ResturantCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRating, sla } = resData.info;
   return (
     <div
+      data-testid="resCard"
       className="p-4 m-4 w-[250px] h-[445px] rounded-lg"
       style={{ backgroundColor: "#f0f0f0" }}
     >
@@ -17,7 +18,7 @@ const ResturantCard = (props) => {
   );
 };
 
-export const withPromtedLabel = () => {
+export const withPromtedLabel = (ResturantCard) => {
   return (props) => {
     return (
       <div>
