@@ -15,28 +15,23 @@ import Cart from "./components/Cart";
 const Grocery = lazy(() => import("./components/Grocery"));
 import Name from "./Name";
 const AppLayout = () => {
+  const [userInfo, setUserInfo] = useState("");
+  useEffect(() => {
+    const data = {
+      username: "Dimple Dechamma",
+    };
+    setUserInfo(data.username);
+  }, []);
   return (
-    <div>
-      <Name />
-    </div>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userInfo, setUserInfo }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
-  // const [userInfo, setUserInfo] = useState("");
-  // useEffect(() => {
-  //   const data = {
-  //     username: "Dimple Dechamma",
-  //   };
-  //   setUserInfo(data.username);
-  // }, []);
-  // return (
-  //   <Provider store={appStore}>
-  //     <UserContext.Provider value={{ loggedInUser: userInfo, setUserInfo }}>
-  //       <div className="app">
-  //         <Header />
-  //         <Outlet />
-  //       </div>
-  //     </UserContext.Provider>
-  //   </Provider>
-  // );
 };
 
 const appRouter = createBrowserRouter([
