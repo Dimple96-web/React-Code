@@ -1,17 +1,24 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { checkValidData } from "../utils/validate";
 import Header from "./Header";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [validateMessage, setValidateMessage] = useState(null);
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleToggle = () => {
     setIsSignInForm(!isSignInForm);
@@ -37,7 +44,27 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://occ-0-3973-3662.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                }),
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -55,6 +82,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -83,6 +111,7 @@ const Login = () => {
         </h1>
         {isSignInForm ? null : (
           <input
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="py-4 px-4 w-full bg-gray-800"
